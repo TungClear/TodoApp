@@ -56,12 +56,24 @@ class App extends Component {
     })
   }
 
+  // findChar = char => {
+  //   const { todoList } = this.state;
+  //   return todoList.indexOf(char)>-1;
+  // }
+
+  handleSearch = char => {
+    const { todoList } = this.state;
+    this.setState({
+      todoList: todoList.filter(todo => todo.indexOf(char)>-1)
+    })
+  }
+
   render() {
     const { todoList } = this.state;
     return (
       <div>
         <FormNewTodo handleSubmit={this.handleSubmit} />
-        <FormSearch />
+        <FormSearch handleSearch={this.handleSearch}/>
         <ListTodo todoList={todoList} removeTodo={this.removeTodo} />
         <button onClick={this.clearList}>Clear the List</button>
         <button onClick={this.resetList}>Reset the List</button>

@@ -18,7 +18,6 @@ class FormNewTodo extends Component{
 
     submitForm = () => {
         if(!this.state.todo) return;
-        
         this.props.handleSubmit(this.state.todo);
         this.setState({todo:""});
     }
