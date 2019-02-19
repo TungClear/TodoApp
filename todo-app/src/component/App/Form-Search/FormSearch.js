@@ -9,7 +9,6 @@ class FormSearch extends Component{
     handleSearch = event =>{
         const {value} = event.target;
         this.props.handleSearch(value)
-        this.setState({})
     }
     
     render(){
