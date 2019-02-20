@@ -12,10 +12,16 @@ class FormSearch extends Component{
     handleSearch = event =>{
         const {value} = event.target;
         this.props.handleSearch(value);
-        console.log(`value: ${value}`);
+        // console.log(`value: ${value}`);
         this.setState({search:value});
-        console.log(`value in state: ${this.state.search}`)
+        // console.log(`value in state: ${this.state.search}`)
     }
+
+    // componentDidUpdate(prevProps, prevState, snapshot){
+    //     if(this.props.todoList !== prevState.todoList){
+
+    //     }
+    // }
     
     render(){
         return(

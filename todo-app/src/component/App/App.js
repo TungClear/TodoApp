@@ -19,11 +19,13 @@ class App extends Component {
     "Learn more about React Native"
   ]
 
+  char="";
+
   constructor(props) {
     super(props);
     this.state = {
       todoList: this.todoList,
-      clearList: false,
+      clearListFlag: false,
       tempList: this.todoList
     };
   }
@@ -46,35 +48,54 @@ class App extends Component {
       todoList: [...this.state.todoList, todo],
       tempList: [...this.state.tempList, todo]
     });
-    if (!this.state.clearList) { this.todoList.push(todo) }
+    if (!this.state.clearListFlag) { this.todoList.push(todo) }
+
+
+    // this.handleSearch(this.char);
   }
 
   clearList = () => {
     this.setState({
       todoList: [],
       tempList: [],
-      clearList: true
+      clearListFlag: true
     })
 
   }
 
   resetList = () => {
     this.setState({
+      
       todoList: this.todoList,
       tempList: this.todoList,
-      clearList: false
-    })
+      clearListFlag: false
+    });
+    // this.handleSearch(this.char);
   }
   
   handleSearch = char => {
     const todoList = this.state.tempList;
+    this.char = char;
     this.setState({
       todoList: todoList.filter(todo => todo.indexOf(char) > -1 || todo.indexOf(char.toUpperCase())> -1)
     })
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot){
+    if (this.state.todoList !== prevState.todoList) {
+      console.log(`this.state.todoList: ${this.state.todoList.length}`);
+      console.log(`prevState.todoList: ${prevState.todoList.length}`) 
+    }
+  }
+
+  // getSnapshotBeforeUpdate(prevProps, prevState){
+  //      this.handleSearch(this.char);
+  //      return
+  // }
+
   render() {
     const { todoList } = this.state;
+    console.log(todoList);
     return (
       <div>
         <FormNewTodo handleSubmit={this.handleSubmit} />
