@@ -23,48 +23,53 @@ class App extends Component {
     super(props);
     this.state = {
       todoList: this.todoList,
-      clearList: false
+      clearList: false,
+      tempList: this.todoList//immutable
     };
   }
 
   removeTodo = index => {
     const { todoList } = this.state;
-
+    const { tempList } = this.state;
     this.setState({
       todoList: todoList.filter(
+        (todo, i) => i !== index
+      ),
+      tempList: tempList.filter(
         (todo, i) => i !== index
       )
     })
   }
 
   handleSubmit = todo => {
-    this.setState(
-      { todoList: [...this.state.todoList, todo] }
-    );
-      this.todoList.push(todo);
+    this.setState({ 
+      todoList: [...this.state.todoList, todo],
+      tempList: [...this.state.tempList, todo]
+    });
+    if (!this.state.clearList) { this.todoList.push(todo) }
   }
 
   clearList = () => {
     this.setState({
-      todoList: []
+      todoList: [],
+      tempList: [],
+      clearList: true
     })
+
   }
 
   resetList = () => {
     this.setState({
-      todoList: this.todoList
+      todoList: this.todoList,
+      tempList: this.todoList,
+      clearList: false
     })
   }
-
-  // findChar = char => {
-  //   const { todoList } = this.state;
-  //   return todoList.indexOf(char)>-1;
-  // }
-
+  
   handleSearch = char => {
-    const { todoList } = this.state;
+    const todoList = this.state.tempList;
     this.setState({
-      todoList: todoList.filter(todo => todo.indexOf(char)>-1)
+      todoList: todoList.filter(todo => todo.indexOf(char) > -1 || todo.indexOf(char.toUpperCase())> -1)
     })
   }
 
@@ -73,7 +78,7 @@ class App extends Component {
     return (
       <div>
         <FormNewTodo handleSubmit={this.handleSubmit} />
-        <FormSearch handleSearch={this.handleSearch}/>
+        <FormSearch handleSearch={this.handleSearch} />
         <ListTodo todoList={todoList} removeTodo={this.removeTodo} />
         <button onClick={this.clearList}>Clear the List</button>
         <button onClick={this.resetList}>Reset the List</button>
