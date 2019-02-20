@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import './FormSearch.css';
 class FormSearch extends Component{
 
     constructor(props){
@@ -20,7 +20,7 @@ class FormSearch extends Component{
     render(){
         return(
             <form>
-                <input type="text" placeholder="filter list" onChange={this.handleSearch}/>
+                <input type="text" className="search" placeholder="filter list" onChange={this.handleSearch}/>
             </form>
         );
     }

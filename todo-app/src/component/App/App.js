@@ -24,7 +24,7 @@ class App extends Component {
     this.state = {
       todoList: this.todoList,
       clearList: false,
-      tempList: this.todoList//immutable
+      tempList: this.todoList
     };
   }
 
@@ -80,8 +80,8 @@ class App extends Component {
         <FormNewTodo handleSubmit={this.handleSubmit} />
         <FormSearch handleSearch={this.handleSearch} />
         <ListTodo todoList={todoList} removeTodo={this.removeTodo} />
-        <button onClick={this.clearList}>Clear the List</button>
-        <button onClick={this.resetList}>Reset the List</button>
+        <button onClick={this.clearList} className="clear">Clear the List</button>
+        <button onClick={this.resetList} className="reset">Reset the List</button>
       </div>
     )
   }

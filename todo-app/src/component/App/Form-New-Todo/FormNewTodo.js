@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import './FormNewTodo.css';
 class FormNewTodo extends Component{
 
     constructor(props){
@@ -27,9 +27,9 @@ class FormNewTodo extends Component{
 
         return(
             <form>
-                <input type="text" value={todo}  placeholder="create new work item" onChange={this.handleOnchange}/>
+                <input type="text" className="newTodo" value={todo} placeholder="create new work item" onChange={this.handleOnchange} />
                 <br />
-                <button type="button" onClick={this.submitForm}>Enter New Item</button>
+                <button type="button" className="enter" onClick={this.submitForm}>Enter New Item</button>
             </form>
         );
     }

@@ -1,0 +1,14 @@
+.newTodo {
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.enter {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: #1ec0ff;
+    font-size: 25px;
+    padding: 8px;
+    border-radius: 3px;
+    border: none;
+}

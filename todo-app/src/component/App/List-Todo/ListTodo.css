@@ -1,0 +1,30 @@
+.todoTable {
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    color: black;
+}
+
+.todoNumber{
+    text-align: right
+}
+
+.todoItem{
+    text-align: left;
+    padding-left: 25px;
+}
+
+.remove{
+    background: #f9d423;
+}
+
+.remove:hover{
+    background: #1F2124;
+    color: white;
+}
+
+button {
+    font-size: 18px;
+    border-radius: 3px;
+    border: none;
+}

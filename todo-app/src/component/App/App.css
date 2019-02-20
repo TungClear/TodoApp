@@ -1,0 +1,17 @@
+.clear {
+    margin-top: 15px;
+    margin-right: 8px;
+    font-size: 25px;
+    padding: 10px;
+    background: #f9d423;
+    margin-bottom: 20px;
+}
+
+.reset {
+    margin-top: 15px;
+    margin-left: 8px;
+    font-size: 25px;
+    padding: 10px;
+    background: #f9d423;
+    margin-bottom: 20px;
+}

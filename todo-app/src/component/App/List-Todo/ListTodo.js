@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-
+import './ListTodo.css';
 const TableHeader = () => {
     return (
         <thead>
             <tr>
-                <th>#</th>
-                <th>Task</th>
+                <th className="todoNumber">#</th>
+                <th className="todoItem">Task</th>
                 <th>(X)</th>
             </tr>
         </thead>
@@ -17,9 +17,9 @@ const TableBody = props => {
     const rows = props.todoList.map((row, index) => {
         return (
             <tr key={index}>
-                <td>Task {index+1}</td>
-                <td>{row}</td>
-                <td><button onClick={() => props.removeTodo(index)}>Delete</button></td>
+                <td className="todoNumber">Task {index+1}</td>
+                <td className="todoItem">{row}</td>
+                <td><button className="remove" onClick={() => props.removeTodo(index)}>X</button></td>
             </tr>
         );
     });
@@ -34,7 +34,7 @@ class ListTodo extends React.Component {
         const { todoList, removeTodo } = this.props; 
 
         return (
-            <table>
+            <table className="todoTable">
                 <TableHeader />
                 <TableBody 
                     todoList={todoList} 
