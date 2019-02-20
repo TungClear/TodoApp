@@ -1,32 +1,17 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './FormSearch.css';
-class FormSearch extends Component{
 
-    constructor(props){
-        super(props);
-        this.state = {
-            search: ""
-        }
-    }
+class FormSearch extends Component {
 
-    handleSearch = event =>{
-        const {value} = event.target;
+    handleSearch = event => {
+        const { value } = event.target;
         this.props.handleSearch(value);
-        // console.log(`value: ${value}`);
-        this.setState({search:value});
-        // console.log(`value in state: ${this.state.search}`)
     }
 
-    // componentDidUpdate(prevProps, prevState, snapshot){
-    //     if(this.props.todoList !== prevState.todoList){
-
-    //     }
-    // }
-    
-    render(){
-        return(
+    render() {
+        return (
             <form>
-                <input type="text" className="search" placeholder="filter list" onChange={this.handleSearch}/>
+                <input type="text" className="search" placeholder="filter list" onChange={this.handleSearch} />
             </form>
         );
     }

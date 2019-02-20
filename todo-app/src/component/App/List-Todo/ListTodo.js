@@ -24,7 +24,6 @@ const TableBody = props => {
             </tr>
         );
     });
-
     return <tbody>{rows}</tbody>;
 }
 
@@ -33,7 +32,6 @@ class ListTodo extends React.Component {
 
     render() {
         const { todoList, removeTodo } = this.props; 
-
         return (
             <table className="todoTable">
                 <TableHeader />

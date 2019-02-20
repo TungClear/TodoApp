@@ -19,14 +19,13 @@ class App extends Component {
     "Learn more about React Native"
   ]
 
-  char="";
-
   constructor(props) {
     super(props);
     this.state = {
       todoList: this.todoList,
       clearListFlag: false,
-      tempList: this.todoList
+      tempList: this.todoList,
+      searchText: ''
     };
   }
 
@@ -44,14 +43,11 @@ class App extends Component {
   }
 
   handleSubmit = todo => {
-    this.setState({ 
+    this.setState({
       todoList: [...this.state.todoList, todo],
       tempList: [...this.state.tempList, todo]
     });
     if (!this.state.clearListFlag) { this.todoList.push(todo) }
-
-
-    // this.handleSearch(this.char);
   }
 
   clearList = () => {
@@ -60,50 +56,39 @@ class App extends Component {
       tempList: [],
       clearListFlag: true
     })
-
   }
 
   resetList = () => {
     this.setState({
-      
       todoList: this.todoList,
       tempList: this.todoList,
       clearListFlag: false
     });
-    // this.handleSearch(this.char);
-  }
-  
-  handleSearch = char => {
-    const todoList = this.state.tempList;
-    this.char = char;
-    this.setState({
-      todoList: todoList.filter(todo => todo.indexOf(char) > -1 || todo.indexOf(char.toUpperCase())> -1)
-    })
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot){
-    if (this.state.todoList !== prevState.todoList) {
-      console.log(`this.state.todoList: ${this.state.todoList.length}`);
-      console.log(`prevState.todoList: ${prevState.todoList.length}`) 
-    }
+  handleSearch = searchText => {
+    this.setState({ searchText });
   }
 
-  // getSnapshotBeforeUpdate(prevProps, prevState){
-  //      this.handleSearch(this.char);
-  //      return
-  // }
+  getListToDo = () => {
+    const { todoList, searchText } = this.state;
+    return todoList.filter(
+      todo =>
+        todo.indexOf(searchText) > -1 ||
+        todo.indexOf(searchText.toUpperCase()) > -1
+    );
+  };
 
   render() {
     const { todoList } = this.state;
-    console.log(todoList);
     return (
-      <div>
+      <React.Fragment>
         <FormNewTodo handleSubmit={this.handleSubmit} />
         <FormSearch handleSearch={this.handleSearch} />
-        <ListTodo todoList={todoList} removeTodo={this.removeTodo} />
+        <ListTodo todoList={this.getListToDo()} removeTodo={this.removeTodo} />
         <button onClick={this.clearList} className="clear">Clear the List</button>
         <button onClick={this.resetList} className="reset">Reset the List</button>
-      </div>
+      </React.Fragment>
     )
   }
 }
